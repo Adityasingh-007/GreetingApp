@@ -40,6 +40,29 @@ public class GreetingController {
     GreetingService greetingService;
 
 
+//    UC3
+
+    @GetMapping("greetings/user")
+    public Greeting getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        String message;
+
+        if(firstName != null && lastName != null){
+            message = "Hello, " + firstName + " " + lastName ;
+        }
+        else if(firstName != null){
+            message = "Hello" + firstName;
+        }
+        else if(lastName != null){
+            message = "Hello" + lastName ;
+        }
+        else{
+            message = "Hello, World";
+        }
+        return new Greeting(message);
+    }
 
 
 }
